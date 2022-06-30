@@ -6,6 +6,7 @@ import {
 
 export class FbsearchRepository extends Repository {
   async suggestedSearches(type: 'blended' | 'users' | 'hashtags' | 'places') {
+    try{
     const { body } = await this.client.request.send({
       url: '/api/v1/fbsearch/suggested_searches/',
       qs: {
@@ -13,6 +14,9 @@ export class FbsearchRepository extends Repository {
       },
     });
     return body;
+    }catch(e){
+      
+    }
   }
   async recentSearches() {
     const { body } = await this.client.request.send({
